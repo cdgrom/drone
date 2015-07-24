@@ -101,7 +101,7 @@ function fly(robot) {
         console.log("right and backwards correction")
     });
 
-    after((firsttak+fidur+secdur+thidur+foudur)*1000, function() {
+    after((firsttak+fidur+secdur+thidur+foudur)*1001, function() {
         bot.drone.land();
         console.log("land")
     });
