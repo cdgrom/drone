@@ -46,34 +46,39 @@ function fly(robot) {
         console.log("Battery level:", data);
     });
 
-    // Disable emergency setting if there was any
-    bot.drone.disableEmergency();
-    // Tell the drone it is lying horizontally
-    bot.drone.ftrim();
-
-    // Take off
     bot.drone.takeoff();
 
-    bot.nav.on("altitudeChange", function(data) {
-        console.log("Altitude:", data);
-        // Drone is higher than 1.5 meters up
-        bot.drone.up(0.5);
-        if (data > 2.5) {
-            var timer = 0
-            for (var i = 0; i < timer; i) {
-                bot.drone.front(0.5);
-                after(1*1000), function() {
-                    timer = timer +1;
-                }
-            }
-            after(10*1000, function() {
-                bot.drone.land();
-            });
-
+    bot.nav.on("altitudeChange", function(data){
+       bot.drone.up(0.5)
+        if (data > 1.5) {
+            bot.drone.land();
         }
     });
 
+    after(10*1000, function() {
+        bot.drone.land();
+    });
+    after(15*1000, function() {
+        bot.drone.stop();
+    });
+
+
+
+
     /*
+    bot.drone.up(0.5);
+
+    var timer = 0
+    for (var i = 0; i < timer; i) {
+        bot.drone.front(0.5);
+        after(1*1000), function() {
+            timer = timer +1;
+        }
+    }
+    after(10*1000, function() {
+        bot.drone.land();
+    });
+
     after(15*1000, function() {
         bot.drone.stop();
     });
