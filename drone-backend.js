@@ -57,23 +57,28 @@ function fly(robot) {
     after(5*1000, function() {
         bot.drone.up(0.5);
         bot.drone.front(0.1);
+        console.log("up and forward correction")
     });
 
-    after(10*1000, function() {
+    after(15*1000, function() {
         bot.drone.up(0);
         bot.drone.hover();
-    });
-
-    after(11*1000, function() {
-        bot.drone.front(0.5);
+        console.log("hover")
     });
 
     after(16*1000, function() {
-        bot.drone.land();
+        bot.drone.front(0.5);
+        console.log("forward")
     });
 
-    after(17*1000, function() {
+    after(21*1000, function() {
+        bot.drone.land();
+        console.log("land")
+    });
+
+    after(22*1000, function() {
         bot.drone.stop();
+        console.log("stop")
     });
 
     /*
