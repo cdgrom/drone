@@ -20,6 +20,12 @@ var bot;
 // Fly the bot
 function fly(robot) {
     bot = robot;
+
+    // Disable emergency setting if there was any
+    bot.drone.disableEmergency();
+    // Tell the drone it is lying horizontally
+    bot.drone.ftrim();
+
     // Only retrieve a limited amount of navigation data
     // As recommended by Parrot AR Drone developer's guide
     bot.drone.config('general:navdata_demo', 'TRUE');
@@ -31,7 +37,7 @@ function fly(robot) {
     bot.nav.on("altitudeChange", function(data) {
         console.log("Altitude:", data);
         // Drone is higher than 1.5 meters up
-        if (altitude > 1.5) {
+        if (data > 1.5) {
             bot.drone.land();
         }
     });
@@ -47,34 +53,40 @@ function fly(robot) {
 
     // Take off
     bot.drone.takeoff();
-/*
-    after(10*1000, function() {
-        bot.drone.land();
+
+    bot.nav.on("altitudeChange", function(data) {
+        console.log("Altitude:", data);
+        // Drone is higher than 1.5 meters up
+        bot.drone.up(0.5);
+        if (data > 2.5) {
+            var timer = 0
+            for (var i = 0; i < timer; i) {
+                bot.drone.front(0.5);
+                after(1*1000), function() {
+                    timer = timer +1;
+                }
+            }
+            after(10*1000, function() {
+                bot.drone.land();
+            });
+
+        }
     });
+
+    /*
     after(15*1000, function() {
         bot.drone.stop();
-    });
-    */
-
-    while (bot.drone.altitude < 200) {
-        bot.drone.up(0.5);
-    }
-
-        bot.drone.front(0.5);
-
-    after(10*1000, function() {
-        bot.drone.land();
     });
 
     after(10*1000, function() {
         bot.drone.takeoff();
     });
 
-    while (bot.drone.altitude < 200) {
+    while (bot.drone.altitude < 2) {
         bot.drone.up(0.5);
     }
 
-        bot.drone.back(0.5);
+    bot.drone.back(0.5);
 
     after(10*1000, function() {
         bot.drone.land();
@@ -83,32 +95,7 @@ function fly(robot) {
     after(15*1000, function() {
         bot.drone.stop();
     });
+    */
 }
 
 Cylon.start();
-
-fly(bot);
-
-/*
- while (bot.drone.altitude < 200) {
- bot.drone.up(1);
- }
-
- for (var i = 0; i < 1; i = i + 0.1) {
- bot.drone.front(i);
- }
-
- bot.drone.land();
-
- after(10*1000, function() {
- bot.drone.takeoff();
- });
-
- while (bot.drone.altitude < 200) {
- bot.drone.up(1);
- }
-
- for (var i = 0; i < 1; i = i+0.1) {
- bot.drone.back(i);
- }
- */
