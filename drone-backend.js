@@ -56,41 +56,97 @@ function fly(robot) {
     console.log("takeoff");
 
     after((5)*1000, function() {
-        bot.drone.up(0.5);
+        bot.drone.left(0.5);
         bot.drone.front(0.1);
-        console.log("up and forward correction")
+        console.log("left and forward correction")
     });
 
-    after((5+10)*1000, function() {
+    after((10)*1000, function() {
+        bot.drone.right(0.5);
+        console.log("left and forward correction")
+    });
+
+
+    after((10+5)*1000, function() {
         bot.drone.land();
         console.log("land")
     });
 
-    after((5+11)*1000, function() {
+    after((10+6)*1000, function() {
         bot.drone.stop();
         console.log("stop")
     });
 
-    after((5+11+3)*1000, function() {
+    after((10+6+3)*1000, function() {
         bot.drone.takeoff();
         console.log("takeoff2")
     });
 
-    after((5+11+3+5)*1000, function() {
-        bot.drone.up(0.5);
+    after((10+6+3+5)*1000, function() {
+        bot.drone.left(0.5);
         bot.drone.back(0.1);
-        console.log("up and backwards correction")
+        console.log("left and backwards correction")
     });
 
-    after((5+11+3+5+10)*1000, function() {
+    after((10+6+3+5+5)*1000, function() {
+        bot.drone.right(0.5);
+        bot.drone.back(0.1);
+        console.log("right and backwards correction")
+    });
+
+    after((10+6+3+5+5+3)*1000, function() {
         bot.drone.land();
         console.log("land")
     });
 
-    after((5+11+3+5+11)*1000, function() {
+    after((10+6+3+5+5+4)*1000, function() {
         bot.drone.stop();
         console.log("stop")
     });
+
+
+
+
+
+
+
+
+    //after((5)*1000, function() {
+    //    bot.drone.up(0.5);
+    //    bot.drone.front(0.1);
+    //    console.log("up and forward correction")
+    //});
+    //
+    //after((5+10)*1000, function() {
+    //    bot.drone.land();
+    //    console.log("land")
+    //});
+    //
+    //after((5+11)*1000, function() {
+    //    bot.drone.stop();
+    //    console.log("stop")
+    //});
+    //
+    //after((5+11+3)*1000, function() {
+    //    bot.drone.takeoff();
+    //    console.log("takeoff2")
+    //});
+    //
+    //after((5+11+3+5)*1000, function() {
+    //    bot.drone.up(0.5);
+    //    bot.drone.back(0.1);
+    //    console.log("up and backwards correction")
+    //});
+    //
+    //after((5+11+3+5+10)*1000, function() {
+    //    bot.drone.land();
+    //    console.log("land")
+    //});
+    //
+    //after((5+11+3+5+11)*1000, function() {
+    //    bot.drone.stop();
+    //    console.log("stop")
+    //});
 }
 
 Cylon.start();
