@@ -53,70 +53,44 @@ function fly(robot) {
     });
 
     bot.drone.takeoff();
+    console.log("takeoff");
 
-    after(5*1000, function() {
+    after((5)*1000, function() {
         bot.drone.up(0.5);
         bot.drone.front(0.1);
         console.log("up and forward correction")
     });
 
-    after(15*1000, function() {
-        bot.drone.up(0);
-        bot.drone.hover();
-        console.log("hover")
-    });
-
-    after(16*1000, function() {
-        bot.drone.front(0.5);
-        console.log("forward")
-    });
-
-    after(21*1000, function() {
+    after((5+7.5)*1000, function() {
         bot.drone.land();
         console.log("land")
     });
 
-    after(22*1000, function() {
+    after((5+8.5)*1000, function() {
         bot.drone.stop();
         console.log("stop")
     });
 
-    /*
-    bot.drone.up(0.5);
-
-    var timer = 0
-    for (var i = 0; i < timer; i) {
-        bot.drone.front(0.5);
-        after(1*1000), function() {
-            timer = timer +1;
-        }
-    }
-    after(10*1000, function() {
-        bot.drone.land();
-    });
-
-    after(15*1000, function() {
-        bot.drone.stop();
-    });
-
-    after(10*1000, function() {
+    after((5+8.5+3)*1000, function() {
         bot.drone.takeoff();
+        console.log("takeoff2")
     });
 
-    while (bot.drone.altitude < 2) {
+    after((5+8.5+3+5)*1000, function() {
         bot.drone.up(0.5);
-    }
+        bot.drone.back(0.1);
+        console.log("up and backwards correction")
+    });
 
-    bot.drone.back(0.5);
-
-    after(10*1000, function() {
+    after((5+8.5+3+5+7.5)*1000, function() {
         bot.drone.land();
+        console.log("land")
     });
 
-    after(15*1000, function() {
+    after((5+8.5+3+5+8.5)*1000, function() {
         bot.drone.stop();
+        console.log("stop")
     });
-    */
 }
 
 Cylon.start();
