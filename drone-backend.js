@@ -57,28 +57,28 @@ function fly(robot) {
     */
 
     while (bot.drone.altitude < 200) {
-        bot.drone.up(1);
+        bot.drone.up(0.5);
     }
 
-    for (var i = 0; i < 1; i = i + 0.1) {
-        bot.drone.front(i);
-    }
+        bot.drone.front(0.5);
 
-    bot.drone.land();
+    after(10*1000, function() {
+        bot.drone.land();
+    });
 
     after(10*1000, function() {
         bot.drone.takeoff();
     });
 
     while (bot.drone.altitude < 200) {
-        bot.drone.up(1);
+        bot.drone.up(0.5);
     }
 
-    for (var i = 0; i < 1; i = i+0.1) {
-        bot.drone.back(i);
-    }
+        bot.drone.back(0.5);
 
-    bot.drone.land();
+    after(10*1000, function() {
+        bot.drone.land();
+    });
 
     after(15*1000, function() {
         bot.drone.stop();
