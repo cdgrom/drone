@@ -55,12 +55,12 @@ function fly(robot) {
     bot.drone.takeoff();
     console.log("takeoff");
     var fidur = 5;
-    var secdur = 1.5;
-    var thidur = 1.5;
+    var secdur = 2;
+    var thidur = 2;
     var foudur = 1;
     var firsttak = fidur + secdur+thidur+foudur;
     var turn = 0.2;
-    var forward = 0.25;
+    var forward = 0.2;
 
     after((fidur)*1000, function() {
         bot.drone.right(turn);
