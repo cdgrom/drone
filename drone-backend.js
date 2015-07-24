@@ -1,6 +1,4 @@
 var Cylon = require('cylon');
-var ws = require('nodejs-websocket');
-var bot;
 
 // Initialise the robot
 Cylon.robot()
@@ -12,28 +10,51 @@ Cylon.robot()
         driver: "ardrone",
         connection: "ardrone"
     })
-
     .device("nav", {
         driver: "ardrone-nav",      // Combine with a second device to have more information
         connection: "ardrone"
     })
     .on("ready", fly);
 
+var bot;
 // Fly the bot
 function fly(robot) {
-
+    bot = robot;
     // Only retrieve a limited amount of navigation data
     // As recommended by Parrot AR Drone developer's guide
     bot.drone.config('general:navdata_demo', 'TRUE');
 
     bot.nav.on("navdata", function(data) {
-        console.log(data);
+        // console.log(data);
     });
 
-    bot = robot;
+    bot.nav.on("altitudeChange", function(data) {
+        console.log("Altitude:", data);
+        // Drone is higher than 1.5 meters up
+        if (altitude > 1.5) {
+            bot.drone.land();
+        }
+    });
+
+    bot.nav.on("batteryChange", function(data) {
+        console.log("Battery level:", data);
+    });
+
+    // Disable emergency setting if there was any
     bot.drone.disableEmergency();
+    // Tell the drone it is lying horizontally
     bot.drone.ftrim();
+
+    // Take off
     bot.drone.takeoff();
+/*
+    after(10*1000, function() {
+        bot.drone.land();
+    });
+    after(15*1000, function() {
+        bot.drone.stop();
+    });
+    */
 
     while (bot.drone.altitude < 200) {
         bot.drone.up(1);
@@ -56,8 +77,38 @@ function fly(robot) {
     for (var i = 0; i < 1; i = i+0.1) {
         bot.drone.back(i);
     }
+
+    bot.drone.land();
+
+    after(15*1000, function() {
+        bot.drone.stop();
+    });
 }
 
 Cylon.start();
 
-fly(drone);
+fly(bot);
+
+/*
+ while (bot.drone.altitude < 200) {
+ bot.drone.up(1);
+ }
+
+ for (var i = 0; i < 1; i = i + 0.1) {
+ bot.drone.front(i);
+ }
+
+ bot.drone.land();
+
+ after(10*1000, function() {
+ bot.drone.takeoff();
+ });
+
+ while (bot.drone.altitude < 200) {
+ bot.drone.up(1);
+ }
+
+ for (var i = 0; i < 1; i = i+0.1) {
+ bot.drone.back(i);
+ }
+ */
