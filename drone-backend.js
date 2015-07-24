@@ -54,52 +54,59 @@ function fly(robot) {
 
     bot.drone.takeoff();
     console.log("takeoff");
+    var fidur = 5;
+    var secdur = 1.5;
+    var thidur = 1.5;
+    var foudur = 1;
+    var firsttak = fidur + secdur+thidur+foudur;
+    var turn = 0.2;
+    var forward = 0.25;
 
-    after((5)*1000, function() {
-        bot.drone.right(0.1);
-        bot.drone.front(0.3);
+    after((fidur)*1000, function() {
+        bot.drone.right(turn);
+        bot.drone.front(forward);
         console.log("right and forward correction")
     });
 
-    after((5+2)*1000, function() {
-        bot.drone.left(0.1);
-        bot.drone.front(0.3);
+    after((fidur+secdur)*1000, function() {
+        bot.drone.left(turn);
+        bot.drone.front(forward);
         console.log("left and forward correction")
     });
 
-    after((5+2+2)*1000, function() {
+    after((fidur+secdur+thidur)*1000, function() {
         bot.drone.land();
         console.log("land")
     });
 
-    after((5+2+2+1)*1000, function() {
+    after((fidur+secdur+thidur+foudur)*1000, function() {
         bot.drone.stop();
         console.log("stop")
     });
 
-    after((5+2+2+1+5)*1000, function() {
+    after((firsttak+fidur)*1000, function() {
         bot.drone.takeoff();
         console.log("takeoff2")
     });
 
-    after((5+2+2+1+5+5)*1000, function() {
-        bot.drone.left(0.15);
-        bot.drone.back(0.3);
+    after((firsttak+fidur+secdur)*1000, function() {
+        bot.drone.left(turn);
+        bot.drone.back(forward);
         console.log("left and backwards correction")
     });
 
-    after((5+2+2+1+5+5+2)*1000, function() {
-        bot.drone.right(0.15);
-        bot.drone.back(0.3);
+    after((firsttak+fidur+secdur+thidur)*1000, function() {
+        bot.drone.right(turn);
+        bot.drone.back(forward);
         console.log("right and backwards correction")
     });
 
-    after((5+2+2+1+5+5+2+2)*1000, function() {
+    after((firsttak+fidur+secdur+thidur+foudur)*1000, function() {
         bot.drone.land();
         console.log("land")
     });
 
-    after((5+2+2+1+5+5+2+2+1)*1000, function() {
+    after((firsttak+firsttak)*1000, function() {
         bot.drone.stop();
         console.log("stop")
     });
