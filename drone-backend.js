@@ -46,14 +46,13 @@ function fly(robot) {
         console.log("Battery level:", data);
     });
 
-    bot.drone.takeoff();
-
     bot.nav.on("altitudeChange", function(data){
-       bot.drone.up(0.5)
-        if (data > 1.5) {
+        if (data > 2.5) {
             bot.drone.land();
         }
     });
+
+    bot.drone.takeoff();
 
     after(10*1000, function() {
         bot.drone.land();
