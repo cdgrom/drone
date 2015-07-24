@@ -56,13 +56,14 @@ function fly(robot) {
     console.log("takeoff");
 
     after((5)*1000, function() {
-        bot.drone.left(0.5);
-        bot.drone.front(0.1);
+        bot.drone.left(0.2);
+        bot.drone.front(0.4);
         console.log("left and forward correction")
     });
 
     after((10)*1000, function() {
-        bot.drone.right(0.5);
+        bot.drone.right(0.2);
+        bot.drone.front(0.4);
         console.log("left and forward correction")
     });
 
@@ -83,14 +84,14 @@ function fly(robot) {
     });
 
     after((10+6+3+5)*1000, function() {
-        bot.drone.left(0.5);
-        bot.drone.back(0.1);
+        bot.drone.left(0.2);
+        bot.drone.back(0.4);
         console.log("left and backwards correction")
     });
 
     after((10+6+3+5+5)*1000, function() {
-        bot.drone.right(0.5);
-        bot.drone.back(0.1);
+        bot.drone.right(0.2);
+        bot.drone.back(0.4);
         console.log("right and backwards correction")
     });
 
