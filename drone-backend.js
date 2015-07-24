@@ -54,15 +54,27 @@ function fly(robot) {
 
     bot.drone.takeoff();
 
+    after(5*1000, function() {
+        bot.drone.up(0.5);
+        bot.drone.front(0.1);
+    });
+
     after(10*1000, function() {
+        bot.drone.up(0);
+        bot.drone.hover();
+    });
+
+    after(11*1000, function() {
+        bot.drone.front(0.5);
+    });
+
+    after(16*1000, function() {
         bot.drone.land();
     });
-    after(15*1000, function() {
+
+    after(17*1000, function() {
         bot.drone.stop();
     });
-
-
-
 
     /*
     bot.drone.up(0.5);
