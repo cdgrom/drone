@@ -34,17 +34,17 @@ function fly(robot) {
         // console.log(data);
     });
 
-    bot.nav.on("altitudeChange", function(data) {
-        console.log("Altitude:", data);
-        // Drone is higher than 1.5 meters up
-        if (data > 1.5) {
-            bot.drone.land();
-        }
-    });
+    //bot.nav.on("altitudeChange", function(data) {
+    //    console.log("Altitude:", data);
+    //    // Drone is higher than 1.5 meters up
+    //    if (data > 1.5) {
+    //        bot.drone.land();
+    //    }
+    //});
 
-    bot.nav.on("batteryChange", function(data) {
-        console.log("Battery level:", data);
-    });
+    //bot.nav.on("batteryChange", function(data) {
+    //    console.log("Battery level:", data);
+    //});
 
     bot.nav.on("altitudeChange", function(data){
         if (data > 2.5) {
@@ -61,33 +61,33 @@ function fly(robot) {
         console.log("up and forward correction")
     });
 
-    after((5+7.5)*1000, function() {
+    after((5+10)*1000, function() {
         bot.drone.land();
         console.log("land")
     });
 
-    after((5+8.5)*1000, function() {
+    after((5+11)*1000, function() {
         bot.drone.stop();
         console.log("stop")
     });
 
-    after((5+8.5+3)*1000, function() {
+    after((5+11+3)*1000, function() {
         bot.drone.takeoff();
         console.log("takeoff2")
     });
 
-    after((5+8.5+3+5)*1000, function() {
+    after((5+11+3+5)*1000, function() {
         bot.drone.up(0.5);
         bot.drone.back(0.1);
         console.log("up and backwards correction")
     });
 
-    after((5+8.5+3+5+7.5)*1000, function() {
+    after((5+11+3+5+10)*1000, function() {
         bot.drone.land();
         console.log("land")
     });
 
-    after((5+8.5+3+5+8.5)*1000, function() {
+    after((5+11+3+5+11)*1000, function() {
         bot.drone.stop();
         console.log("stop")
     });
