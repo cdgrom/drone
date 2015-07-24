@@ -56,51 +56,51 @@ function fly(robot) {
     console.log("takeoff");
 
     after((5)*1000, function() {
-        bot.drone.left(0.2);
+        bot.drone.right(0.1);
         bot.drone.front(0.4);
         console.log("left and forward correction")
     });
 
-    after((10)*1000, function() {
-        bot.drone.right(0.2);
+    after((7.5)*1000, function() {
+        bot.drone.left(0.1);
         bot.drone.front(0.4);
         console.log("left and forward correction")
     });
 
 
-    after((10+5)*1000, function() {
+    after((7.5+2.5)*1000, function() {
         bot.drone.land();
         console.log("land")
     });
 
-    after((10+6)*1000, function() {
+    after((7.5+2.5+1)*1000, function() {
         bot.drone.stop();
         console.log("stop")
     });
 
-    after((10+6+3)*1000, function() {
+    after((7.5+2.5+1+5)*1000, function() {
         bot.drone.takeoff();
         console.log("takeoff2")
     });
 
-    after((10+6+3+5)*1000, function() {
-        bot.drone.left(0.2);
+    after((7.5+2.5+1+5+5)*1000, function() {
+        bot.drone.right(0.1);
         bot.drone.back(0.4);
         console.log("left and backwards correction")
     });
 
-    after((10+6+3+5+5)*1000, function() {
-        bot.drone.right(0.2);
+    after((7.5+2.5+1+5+5+2.5)*1000, function() {
+        bot.drone.left(0.1);
         bot.drone.back(0.4);
         console.log("right and backwards correction")
     });
 
-    after((10+6+3+5+5+3)*1000, function() {
+    after((7.5+2.5+1+5+5+2.5+2.5)*1000, function() {
         bot.drone.land();
         console.log("land")
     });
 
-    after((10+6+3+5+5+4)*1000, function() {
+    after((7.5+2.5+1+5+5+2.5+2.5+1)*1000, function() {
         bot.drone.stop();
         console.log("stop")
     });
